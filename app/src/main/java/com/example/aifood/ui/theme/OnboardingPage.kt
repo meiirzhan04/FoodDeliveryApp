@@ -45,6 +45,10 @@ fun OnboardingScreen() {
             Text(
                 text = "sdfipajfibuds"
             )
+            Text(
+                text = "vscscsecsc"
+            )
+
         }
     }
 }
