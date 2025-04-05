@@ -32,6 +32,9 @@ fun OnboardingScreen() {
             Text(
                 text = "asdsadasd"
             )
+            Text(
+                text = "asdasdas"
+            )
         }
     }
 }
