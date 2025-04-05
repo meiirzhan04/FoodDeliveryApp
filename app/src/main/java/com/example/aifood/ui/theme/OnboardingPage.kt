@@ -38,6 +38,9 @@ fun OnboardingScreen() {
             Text(
                 text = "Dastan"
             )
+            Text(
+                text = "sdfipajfibuds"
+            )
         }
     }
 }
