@@ -29,10 +29,8 @@ fun OnboardingScreen() {
             Text(
                 text = "We serve incomparable delicacies",
             )
-<<<<<<< HEAD
             Text(text = "It's new")
-=======
->>>>>>> b60de11e0bb382d5a1ec7948b422f671b9555d14
+
         }
     }
 }
