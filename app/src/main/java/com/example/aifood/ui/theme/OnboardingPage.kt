@@ -43,6 +43,9 @@ fun OnboardingScreen() {
                 text = "sdfipajfibuds"
             )
             Text(
+                text = "dsfojdsfbdsfuodsfuodshfoudshfdosuhf"
+            )
+            Text(
                 text = "sdfipajfibuds"
             )
             Text(
