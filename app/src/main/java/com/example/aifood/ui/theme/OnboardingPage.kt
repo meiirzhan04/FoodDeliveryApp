@@ -1,6 +1,5 @@
 package com.example.aifood.ui.theme
 
-import android.R.attr.text
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -21,7 +20,7 @@ fun OnboardingScreen() {
     Box() {
         Image(
             modifier = Modifier.fillMaxSize(),
-            painter = painterResource(id = R.drawable.ic_onboarding_1),
+            painter = painterResource(id = R.drawable.onboarding_1),
             contentDescription = ""
         )
         Box(
