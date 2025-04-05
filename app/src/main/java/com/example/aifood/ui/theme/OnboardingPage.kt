@@ -32,12 +32,6 @@ fun OnboardingScreen() {
             Text(
                 text = "Manas"
             )
-            Text(
-                text = "Meirzhan"
-            )
-            Text(
-                text = "Dastan"
-            )
         }
     }
 }
