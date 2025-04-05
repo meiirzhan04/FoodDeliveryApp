@@ -29,6 +29,15 @@ fun OnboardingScreen() {
             Text(
                 text = "We serve incomparable delicacies",
             )
+            Text(
+                text = "Manas"
+            )
+            Text(
+                text = "Meiirzhan"
+            )
+            Text(
+                text = "Dastan"
+            )
         }
     }
 }
