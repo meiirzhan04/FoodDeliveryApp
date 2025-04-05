@@ -29,9 +29,6 @@ fun OnboardingScreen() {
             Text(
                 text = "We serve incomparable delicacies",
             )
-            Text(
-                text = "Manas"
-            )
         }
     }
 }
