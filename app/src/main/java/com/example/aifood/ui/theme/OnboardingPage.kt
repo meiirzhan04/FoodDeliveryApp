@@ -1,5 +1,6 @@
 package com.example.aifood.ui.theme
 
+import android.R.attr.text
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -37,6 +38,9 @@ fun OnboardingScreen() {
             )
             Text(
                 text = "Dastan"
+            )
+            Text(
+                text = "sdfipajfibuds"
             )
             Text(
                 text = "sdfipajfibuds"
