@@ -9,12 +9,12 @@ import com.example.aifood.ui.theme.dastan.Onboard
 
 @Composable
 fun NavGraph(){
-    val navcontroller = rememberNavController()
-    NavHost(navController = navcontroller, startDestination = "onboard"
+    val navСontroller = rememberNavController()
+    NavHost(navController = navСontroller, startDestination = "onboard"
 
     ) {
-        composable("onboard"){ Onboard(navcontroller) }
-        composable("login"){ Login(navcontroller) }
+        composable("onboard"){ Onboard(navСontroller) }
+        composable("login"){ Login(navСontroller) }
     }
 
 }

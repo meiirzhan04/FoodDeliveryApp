@@ -36,13 +36,14 @@ import androidx.navigation.NavController
 import com.example.aifood.R
 import com.example.aifood.ui.theme.Orange
 
-data class  Onb(
-    val image:Int,
-    val title:String,
-    val subtitle2:String,
-    val indicator:Int
+data class Onb(
+    val image: Int,
+    val title: String,
+    val subtitle2: String,
+    val indicator: Int
 
 )
+
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun Onboard(navController: NavController) {
@@ -50,27 +51,45 @@ fun Onboard(navController: NavController) {
     val screenWidthDp = configuration.screenWidthDp.dp
     val screenHeightDp = configuration.screenHeightDp.dp
 
-    val onboardingArray = listOf(
-        Onb(R.drawable.onboarding_1, "While eating at a restaurant is an enjoyable and convenient occasional treat, most individuals and families prepare their meals at home.", "Vegetables, including lettuce, corn, tomatoes, onions, celery, cucumbers, mushrooms, and more are also sold at many grocery stores, and are purchased similarly to the way that fruits are. ",R.drawable.indicator1),
-        Onb(R.drawable.onboarding_2, "While eating at a restaurant is an enjoyable and convenient occasional treat.", "Vegetables, including lettuce, corn, tomatoes, onions, celery, cucumbers, mushrooms, and more are also sold at many grocery stores. ",R.drawable.indicator2),
-        Onb(R.drawable.onboarding_1, "While eating at a restaurant is an enjoyable and convenient occasional treat, most individuals and families prepare their meals at home.", "Vegetables, including lettuce, corn, tomatoes, onions, celery, cucumbers, mushrooms, and more are also sold at many grocery stores, and are purchased similarly to the way that fruits are. ",R.drawable.indicator3)
+    val onboardingList = listOf(
+        Onb(
+            R.drawable.onboarding_1,
+            "While eating at a restaurant is an enjoyable and convenient occasional treat, most individuals and families prepare their meals at home.",
+            "Vegetables, including lettuce, corn, tomatoes, onions, celery, cucumbers, mushrooms, and more are also sold at many grocery stores, and are purchased similarly to the way that fruits are. ",
+            R.drawable.indicator1
+        ),
+        Onb(
+            R.drawable.onboarding_2,
+            "While eating at a restaurant is an enjoyable and convenient occasional treat.",
+            "Vegetables, including lettuce, corn, tomatoes, onions, celery, cucumbers, mushrooms, and more are also sold at many grocery stores. ",
+            R.drawable.indicator2
+        ),
+        Onb(
+            R.drawable.onboarding_1,
+            "While eating at a restaurant is an enjoyable and convenient occasional treat, most individuals and families prepare their meals at home.",
+            "Vegetables, including lettuce, corn, tomatoes, onions, celery, cucumbers, mushrooms, and more are also sold at many grocery stores, and are purchased similarly to the way that fruits are. ",
+            R.drawable.indicator3
+        )
     )
 
     var counter by remember { mutableStateOf(0) }
-    if (counter >= onboardingArray.size) {
+    if (counter >= onboardingList.size) {
         counter = 0
     }
 
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(id = onboardingArray[counter].image),
+            painter = painterResource(id = onboardingList[counter].image),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )
 
-        Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally){
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Column(
                 modifier = Modifier
 
@@ -81,33 +100,57 @@ fun Onboard(navController: NavController) {
                     .background(Orange, RoundedCornerShape(20.dp))
                     .padding(16.dp)
             ) {
-                Column(modifier = Modifier.fillMaxSize()
-                    , verticalArrangement = Arrangement.SpaceBetween
-                    , horizontalAlignment = Alignment.CenterHorizontally){
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.SpaceBetween,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
 
-                    Text(text = onboardingArray[counter].title, color = Color.White, fontWeight = FontWeight.W700, fontSize = 20.sp,modifier = Modifier.fillMaxWidth(), // Растягиваем текст на всю ширину
-                        textAlign = TextAlign.Center)
+                    Text(
+                        text = onboardingList[counter].title,
+                        color = Color.White,
+                        fontWeight = FontWeight.W700,
+                        fontSize = 20.sp,
+                        modifier = Modifier.fillMaxWidth(), // Растягиваем текст на всю ширину
+                        textAlign = TextAlign.Center
+                    )
 
-                    Text(text = onboardingArray[counter].subtitle2, color = Color.LightGray,fontWeight = FontWeight.W500, fontSize = 15.sp,modifier = Modifier.fillMaxWidth(), // Растягиваем текст на всю ширину
-                        textAlign = TextAlign.Center)
-                    Image(painter = painterResource(id = onboardingArray[counter].indicator), contentDescription = null)
+                    Text(
+                        text = onboardingList[counter].subtitle2,
+                        color = Color.LightGray,
+                        fontWeight = FontWeight.W500,
+                        fontSize = 15.sp,
+                        modifier = Modifier.fillMaxWidth(), // Растягиваем текст на всю ширину
+                        textAlign = TextAlign.Center
+                    )
+                    Image(
+                        painter = painterResource(id = onboardingList[counter].indicator),
+                        contentDescription = null
+                    )
 
 
-                    if (counter <= 1){
-                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween){
-                            Button(onClick = {navController.navigate("login")}) {
+                    if (counter <= 1) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Button(onClick = { navController.navigate("login") }) {
                                 Text(text = "skip")
                             }
-                            Button(onClick = {counter++}) {
+                            Button(onClick = { counter++ }) {
                                 Text(text = "Next")
                             }
                         }
 
-                    }else {
-                        Box(modifier = Modifier.clickable(onClick = { navController.navigate("login")})){
-                            Image(painter = painterResource(id = R.drawable.progress_button)
-                                , contentDescription = null
-                                , contentScale = ContentScale.Crop, modifier = Modifier.size(screenWidthDp/4))
+                    } else {
+                        Box(modifier = Modifier.clickable(onClick = { navController.navigate("login") })) {
+                            Image(
+                                painter = painterResource(id = R.drawable.progress_button),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.size(screenWidthDp / 4)
+                            )
                         }
 
                     }
