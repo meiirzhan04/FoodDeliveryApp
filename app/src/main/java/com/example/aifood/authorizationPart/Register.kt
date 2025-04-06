@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -119,7 +120,8 @@ fun PasswordTextFieldBox(
     name: String,
     text: String,
     placeholder: String,
-    image: Int
+    image: Int,
+    onClick: () -> Unit = {}
 ) {
     Text(
         text = name,
@@ -155,7 +157,7 @@ fun PasswordTextFieldBox(
         Icon(
             painter = painterResource(id = image),
             contentDescription = null,
-            modifier = Modifier.align(Alignment.CenterEnd).padding(horizontal = 16.dp)
+            modifier = Modifier.align(Alignment.CenterEnd).padding(horizontal = 16.dp).size(24.dp)
         )
     }
 }
