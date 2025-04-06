@@ -73,7 +73,7 @@ fun RegisterScreen() {
             name = "Password",
             text = password,
             placeholder = "Password",
-            image = R.drawable.ic_close
+            image = R.drawable.ic_eye_open
         )
     }
 }

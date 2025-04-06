@@ -221,7 +221,11 @@ fun OnBoardingPage(
                                     Spacer(modifier = Modifier.width(8.dp))
                                     IconButton(
                                         onClick = {
-                                            onCLick
+                                            scope.launch {
+                                                pagerState.animateScrollToPage(
+                                                    pagerState.currentPage + 1
+                                                )
+                                            }
                                         },
                                         modifier = Modifier.size(20.dp)
                                     ) {
