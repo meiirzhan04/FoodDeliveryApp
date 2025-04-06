@@ -1,6 +1,7 @@
 package com.example.aifood.authorizationPart
 
-import android.R.attr.text
+import android.R.attr.onClick
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +22,6 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -40,7 +40,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -53,6 +52,21 @@ fun RegisterScreen() {
     var email by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val onClick: () -> Unit = {}
+    val onSignInClicked: () -> Unit = {}
+    val annotatedTextSignIn = buildAnnotatedString {
+        append("Already have an account? ")
+        pushStringAnnotation(tag = "SignIn", annotation = "SignIn")
+        withStyle(
+            style = SpanStyle(
+                color = Color(0xFF_FE8C00),
+                fontWeight = FontWeight.SemiBold,
+            )
+        ) {
+            append("Sign In")
+        }
+
+    }
 
     val isClicked = remember { mutableStateOf(false) }
     Column(
@@ -62,7 +76,7 @@ fun RegisterScreen() {
             .padding(all = 24.dp)
     ) {
         Text(
-            text = "Create your new account",
+            text = "Create your new \naccount",
             fontSize = 32.sp,
             lineHeight = 40.sp,
             color = Color(0xFF_101010),
@@ -115,7 +129,13 @@ fun RegisterScreen() {
         TermsOfServiceAgreementRow()
         Spacer(modifier = Modifier.height(24.dp))
         Button(
-            onClick = { },
+            onClick = {
+                if (email.isNotEmpty() && username.isNotEmpty() && password.isNotEmpty()){
+                    onClick()
+                } else {
+                    Log.d("RegisterScreen", "Empty fields")
+                }
+            },
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(100.dp),
             colors = ButtonDefaults.buttonColors(
@@ -166,8 +186,22 @@ fun RegisterScreen() {
             Spacer(modifier = Modifier.width(24.dp))
             ButtonSocialMedias(iconButton = R.drawable.ic_apple)
         }
-
-
+        Spacer(modifier = Modifier.height(32.dp))
+        ClickableText(
+            text = annotatedTextSignIn,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            onClick = { offset ->
+                annotatedTextSignIn.getStringAnnotations(
+                    start = offset,
+                    end = offset
+                )
+                    .firstOrNull()?.let { annotation ->
+                        when (annotation.tag) {
+                            "SignIn" -> onSignInClicked()
+                        }
+                    }
+            }
+        )
     }
 }
 
@@ -313,6 +347,7 @@ fun TermsOfServiceAgreementRow(
             )
         )
         Spacer(modifier = Modifier.width(8.dp))
+        @Suppress("DEPRECATION")
         ClickableText(
             text = annotatedText,
             onClick = { offset ->
