@@ -1,4 +1,4 @@
-package com.example.aifood.ui.theme.navgraph_A
+package com.example.aifood.ui.theme.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
