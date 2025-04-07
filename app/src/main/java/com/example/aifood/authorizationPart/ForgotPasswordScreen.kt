@@ -1,11 +1,11 @@
 package com.example.aifood.authorizationPart
 
+import android.R.attr.onClick
+import android.R.attr.text
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -31,9 +31,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-
 @Preview
 @Composable
 fun ForgotPasswordScreen() {
@@ -42,81 +39,72 @@ fun ForgotPasswordScreen() {
 
     Box(
         modifier = Modifier
-        .fillMaxSize()
-        .background(Color.White)
-        .imePadding()
-        .padding(horizontal = 24.dp, vertical = 32.dp)
+            .fillMaxSize()
+            .imePadding()
+            .padding(24.dp)
     ) {
         Column(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .verticalScroll(scrollState)
-                .align(Alignment.TopStart)
         ) {
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Forgot Password?" ,
-                fontSize = 32.sp ,
-                fontWeight = FontWeight.SemiBold ,
+                text = "Forgot Password?",
+                fontSize = 32.sp,
+                fontWeight = FontWeight.SemiBold,
                 lineHeight = 40.sp
             )
-
             Spacer(modifier = Modifier.height(8.dp))
-
             Text(
-                text = "Enter your email address and we’ll send you confirmation code to reset your password" ,
-                fontWeight = FontWeight.Medium ,
-                fontSize = 14.sp ,
-                lineHeight = 20.sp ,
-                color = Color(0xFF_878787)
-
+                text = "Enter your email address and we’ll send you confirmation code to reset your password",
+                fontWeight = FontWeight.Medium,
+                fontSize = 14.sp,
+                lineHeight = 20.sp,
+                color = Color(0xFF878787)
             )
-
             Spacer(modifier = Modifier.height(32.dp))
-
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-            ) {
-                Text(
-                    text = "Email Address" ,
-                    fontWeight = FontWeight.Medium ,
-                    fontSize = 14.sp ,
-                    lineHeight = 20.sp
+            Text(
+                text = "Email Address",
+                fontWeight = FontWeight.Medium,
+                fontSize = 14.sp,
+                lineHeight = 20.sp
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            OutlinedTextField(
+                value = email,
+                onValueChange = { email = it },
+                placeholder = { Text(
+                    text = "Email Address"
+                )},
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier.fillMaxWidth(),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedTextColor = Color(0xFF101010),
+                    focusedBorderColor = Color(0xFFD6D6D6),
+                    unfocusedBorderColor = Color(0xFFEDEDED)
                 )
-                Spacer(modifier = Modifier.height(8.dp))
-                OutlinedTextField(
-                    value = email ,
-                    onValueChange = {
-                        email = it
-                    } ,
-                    shape = RoundedCornerShape(8.dp) ,
-                    modifier = Modifier
-                        .fillMaxWidth() ,
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedTextColor = Color(0xFF_101010) ,
-                        focusedBorderColor = Color(0xFF_D6D6D6) ,
-                        unfocusedBorderColor = Color(0xFF_EDEDED)
-                    )
-                )
-            }
-            Button(
-                onClick = {} ,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(52.dp) ,
-                shape = RoundedCornerShape(100.dp) ,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF_FE8C00) ,
-                    contentColor = Color.White
-                )
-            ) {
-                Text(
-                    text = "Continue" ,
-                    fontSize = 14.sp ,
-                    fontWeight = FontWeight.SemiBold ,
-                    lineHeight = 20.sp
-                )
-            }
+            )
+            Spacer(modifier = Modifier.height(100.dp))
+        }
+        Button(
+            onClick = {},
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(52.dp)
+                .align(Alignment.BottomCenter),
+            shape = RoundedCornerShape(100.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFFE8C00),
+                contentColor = Color.White
+            )
+        ) {
+            Text(
+                text = "Continue",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.SemiBold,
+                lineHeight = 20.sp
+            )
         }
     }
 }
