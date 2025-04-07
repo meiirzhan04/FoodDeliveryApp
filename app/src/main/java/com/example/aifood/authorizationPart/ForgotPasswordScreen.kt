@@ -35,7 +35,6 @@ import androidx.navigation.NavHostController
 @Composable
 fun ForgotPasswordScreen() {
     var email by remember { mutableStateOf("") }
-
     Column(
         modifier = Modifier
             .fillMaxSize()

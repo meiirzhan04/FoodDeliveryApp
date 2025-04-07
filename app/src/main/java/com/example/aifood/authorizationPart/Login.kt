@@ -62,7 +62,11 @@ fun LoginScreen(navController: NavHostController) {
                 ) {
                     item {
                         ListItem(
-                            headlineContent = { Text("Reset Password") },
+                            headlineContent = {
+                                Text(
+                                    "Reset Password"
+                                )
+                            },
                             leadingContent = {
                                 Icon(
                                     imageVector = Icons.Default.Close,
@@ -123,7 +127,10 @@ fun LoginScreen(navController: NavHostController) {
             color = Color(0xFFFE8C00),
             modifier = Modifier
                 .align(Alignment.End)
-                .clickable {
+                .clickable(
+                    indication = null,
+                    interactionSource = null
+                ) {
                     showForgotPasswordSheet = true
                     coroutineScope.launch { sheetState.show() }
                 }
@@ -173,9 +180,9 @@ fun LoginScreen(navController: NavHostController) {
             horizontalArrangement = Arrangement.Center
         ) {
             ButtonSocialMedias(iconButton = R.drawable.ic_google)
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(24.dp))
             ButtonSocialMedias(iconButton = R.drawable.ic_facebook)
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(24.dp))
             ButtonSocialMedias(iconButton = R.drawable.ic_apple)
         }
         Spacer(modifier = Modifier.height(32.dp))
@@ -195,7 +202,10 @@ fun LoginScreen(navController: NavHostController) {
                 fontSize = 16.sp,
                 color = Color(0xFFFE8C00),
                 fontWeight = W500,
-                modifier = Modifier.clickable {
+                modifier = Modifier.clickable(
+                    indication = null,
+                    interactionSource = null
+                ) {
                     navController.navigate("registerscreen")
                 }
             )
