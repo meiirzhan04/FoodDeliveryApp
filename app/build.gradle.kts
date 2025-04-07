@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -42,6 +44,9 @@ android {
 dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.9")
     implementation ("androidx.datastore:datastore-preferences:1.1.4")
+    implementation ("androidx.compose.material3:material3:1.3.1")
+    implementation ("androidx.compose.foundation:foundation:1.7.8")
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
