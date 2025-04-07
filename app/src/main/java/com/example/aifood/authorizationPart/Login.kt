@@ -1,6 +1,5 @@
 package com.example.aifood.authorizationPart
 
-import android.R.attr.subtitle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -71,9 +70,13 @@ fun LoginScreen(navController: NavHostController) {
             onDismissRequest = {
                 showForgotPasswordSheet = false
             },
+            shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp),
             containerColor = Color.White,
             sheetState = sheetState,
-            dragHandle = { },
+            scrimColor = Color.Black.copy(alpha = 0.5f),
+            dragHandle = {
+                CustomDragHandle()
+            },
             content = {
                 LazyColumn(
                     modifier = Modifier
@@ -86,7 +89,6 @@ fun LoginScreen(navController: NavHostController) {
                             fontSize = 24.sp,
                             lineHeight = 32.sp,
                             fontWeight = FontWeight.SemiBold
-
                         )
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(
@@ -256,6 +258,15 @@ fun LoginScreen(navController: NavHostController) {
             )
         }
     }
+}
+@Composable
+fun CustomDragHandle() {
+    Box(
+        modifier = Modifier
+            .padding(vertical = 8.dp)
+            .size(width = 55.dp, height = 4.dp)
+            .background(Color.Gray, shape = RoundedCornerShape(2.dp))
+    )
 }
 
 @Composable
