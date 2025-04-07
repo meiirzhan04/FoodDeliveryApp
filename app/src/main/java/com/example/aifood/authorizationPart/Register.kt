@@ -1,6 +1,5 @@
 package com.example.aifood.authorizationPart
 
-import android.R.attr.onClick
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -44,16 +43,18 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.aifood.R
 
-@Preview
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(navController: NavHostController) {
     var email by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val onClick: () -> Unit = {}
-    val onSignInClicked: () -> Unit = {}
+    val onSignInClicked: () -> Unit = {
+        navController.navigate("loginscreen")
+    }
     val annotatedTextSignIn = buildAnnotatedString {
         append("Already have an account? ")
         pushStringAnnotation(tag = "SignIn", annotation = "SignIn")

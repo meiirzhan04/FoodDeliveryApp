@@ -74,7 +74,7 @@ fun OnboardingScreen(
                 navController = navController,
                 pagerState = pagerState,
                 onCLick = {
-                    navController.navigate("login")
+                    navController.navigate("loginscreen")
                 },
                 preferences = preferences
             )
@@ -93,7 +93,7 @@ fun OnboardingScreen(
                     onClick = {
                         scope.launch {
                             preferences.setOnboardingCompleted()
-                            navController.navigate("login") {
+                            navController.navigate("loginscreen") {
                                 popUpTo("onboardingscreen") { inclusive = true }
                             }
                         }
@@ -198,7 +198,7 @@ fun OnBoardingPage(
                                         onClick = {
                                             scope.launch {
                                                 preferences.setOnboardingCompleted()
-                                                navController.navigate("login") {
+                                                navController.navigate("loginscreen") {
                                                     popUpTo("onboardingscreen") { inclusive = true }
                                                 }
                                             }
