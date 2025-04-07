@@ -46,6 +46,9 @@ import com.example.aifood.R
 fun LoginScreen(navController: NavHostController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    Text(
+        text = "asd"
+    )
 
     Column(
         modifier = Modifier
