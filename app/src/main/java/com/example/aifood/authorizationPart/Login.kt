@@ -1,7 +1,6 @@
 package com.example.aifood.authorizationPart
 
 import android.R.attr.end
-import android.R.attr.text
 import android.graphics.drawable.Icon
 import android.text.Layout
 import android.widget.Button
@@ -9,7 +8,6 @@ import android.widget.ImageButton
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,12 +28,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,8 +39,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.W400
 import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.text.font.FontWeight.Companion.W600
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -56,11 +47,6 @@ import com.example.aifood.R
 @Composable
 @Preview
 fun LoginScreen() {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    
-    var isClicked by remember { mutableStateOf(false) }
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -94,11 +80,7 @@ fun LoginScreen() {
 
         TextFieldBoxEmail(
             title = "Email Address" ,
-            hint = "Enter Email" ,
-            text = email,
-            onTextChange = {
-                email = it
-            }
+            hint = "Enter Email"
         )
 
         Spacer(modifier = Modifier.height(14.dp))
@@ -106,15 +88,7 @@ fun LoginScreen() {
         TextFieldBoxPassword(
             title = "Password" ,
             hint = "Password" ,
-            text = password ,
-            image = if (isClicked) R.drawable.ic_eye_close else R.drawable.ic_eye_open,
-            onclick = {
-                isClicked = !isClicked
-            },
-            visualTransformation = (if (!isClicked) VisualTransformation.None else PasswordVisualTransformation()),
-            onTextChange = {
-                password = it
-            }
+            image = R.drawable.ic_eye_close
         )
         Spacer(modifier = Modifier.height(24.dp))
 
@@ -212,8 +186,6 @@ fun LoginScreen() {
 fun TextFieldBoxEmail(
     title: String ,
     hint: String ,
-    text: String ,
-    onTextChange: (String) -> Unit = {}
 ) {
     Text(
         text = title ,
@@ -223,18 +195,15 @@ fun TextFieldBoxEmail(
     )
     Spacer(modifier = Modifier.height(8.dp))
     OutlinedTextField(
-        value =  text,
-        onValueChange = {
-            onTextChange(it)
-        } ,
+        value = "" ,
+        onValueChange = {} ,
         shape = RoundedCornerShape(8.dp) ,
         placeholder = {
             Text(
                 text = hint ,
                 color = Color(0xFF_878787) ,
                 fontSize = 14.sp ,
-                fontWeight = W500 ,
-                lineHeight = 20.sp
+                fontWeight = W500
             )
         } ,
         colors = OutlinedTextFieldDefaults.colors(
@@ -250,11 +219,7 @@ fun TextFieldBoxEmail(
 fun TextFieldBoxPassword(
     title: String ,
     hint: String ,
-    text: String ,
-    onTextChange: (String) -> Unit = {} ,
     image: Int ,
-    onclick: () -> Unit = {} ,
-    visualTransformation: VisualTransformation,
 ) {
     Text(
         text = title ,
@@ -263,29 +228,23 @@ fun TextFieldBoxPassword(
         color = Color(0xFF_101010)
     )
     Spacer(modifier = Modifier.height(8.dp))
-    Box(
-        modifier = Modifier.fillMaxWidth()
-    ) {
+    Box {
         OutlinedTextField(
-            value = text ,
-            onValueChange = {
-                onTextChange(it)
-            } ,
+            value = "" ,
+            onValueChange = {} ,
             shape = RoundedCornerShape(8.dp) ,
             placeholder = {
                 Text(
                     text = hint ,
                     color = Color(0xFF_878787) ,
                     fontSize = 14.sp ,
-                    fontWeight = W500,
-                    lineHeight = 20.sp
+                    fontWeight = W500
                 )
             } ,
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color(0xFF_D6D6D6) ,
                 unfocusedBorderColor = Color(0xFF_EDEDED)
             ) ,
-            visualTransformation = visualTransformation,
             modifier = Modifier.fillMaxWidth()
         )
         Icon(
@@ -294,11 +253,6 @@ fun TextFieldBoxPassword(
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .padding(end = 16.dp)
-                .clickable(
-                    onClick = onclick ,
-                    indication = ripple(bounded = false) ,
-                    interactionSource = null
-                )
         )
     }
 }
