@@ -6,7 +6,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.aifood.OnboardingPreferences
-import com.example.aifood.authorizationPart.ForgotPasswordScreen
 import com.example.aifood.authorizationPart.LoginScreen
 import com.example.aifood.authorizationPart.RegisterScreen
 import com.example.aifood.ui.theme.OnboardingScreen
