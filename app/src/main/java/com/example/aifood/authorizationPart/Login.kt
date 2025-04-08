@@ -51,7 +51,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.aifood.R
-import kotlinx.coroutines.coroutineScope
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,7 +61,6 @@ fun LoginScreen(navController: NavHostController) {
     var showForgotPasswordSheet by remember { mutableStateOf(false) }
 
     val sheetState = rememberModalBottomSheetState()
-
     if (showForgotPasswordSheet) {
         ModalBottomSheet(
             onDismissRequest = {
@@ -181,7 +179,9 @@ fun LoginScreen(navController: NavHostController) {
         )
         Spacer(modifier = Modifier.height(24.dp))
         Button(
-            onClick = {},
+            onClick = {
+                navController.navigate("home")
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(52.dp),
