@@ -11,7 +11,7 @@ import com.example.aifood.authorizationPart.RegisterScreen
 import com.example.aifood.ui.theme.OnboardingScreen
 import com.example.aifood.ui.theme.SplashScreen
 import com.example.aifood.ui.theme.dastan.Basket
-import com.example.aifood.ui.theme.dastan.ForgotPasswordScreen
+import com.example.aifood.authorizationPart.ForgotPasswordScreen
 import com.example.aifood.ui.theme.dastan.Home
 
 
@@ -42,7 +42,7 @@ fun NavGraph(
         composable("forgot") {
             ForgotPasswordScreen(navController)
         }
-        composable("forgotpasswrodscreen") {
+        composable("forgotpasswordscreen") {
             ForgotPasswordScreen(navController)
         }
         composable("registerscreen") {

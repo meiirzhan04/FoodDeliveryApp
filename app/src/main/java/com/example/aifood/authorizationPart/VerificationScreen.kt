@@ -26,6 +26,7 @@ import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,13 +47,17 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.aifood.R
+import com.example.aifood.ui.theme.dastan.KeyboardViewModel
 import kotlinx.coroutines.delay
 
 @Preview
 @Composable
-fun VerificationScreen() {
-
+fun VerificationScreen(
+    viewModel: KeyboardViewModel = viewModel()
+) {
+    val isKeyboardOpen by viewModel.isKeyboardOpen.observeAsState(false)
     var otp by remember { mutableStateOf(List(4) { "" }) }
     val onOtpClicked: () -> Unit = {}
     val focusManager = LocalFocusManager.current
@@ -182,24 +187,34 @@ fun VerificationScreen() {
         )
         Spacer(modifier = Modifier.height(44.dp))
         TimerScreen()
-        Spacer(modifier = Modifier.weight(1f))
-        Button(
-            onClick = {},
+        KeyboardListener(viewModel)
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(52.dp),
-            shape = RoundedCornerShape(100.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFFE8C00),
-                contentColor = Color.White
-            )
+                .fillMaxSize(),
+            verticalArrangement = if (isKeyboardOpen) Arrangement.Top else Arrangement.Bottom
         ) {
-            Text(
-                text = "Continue",
-                fontSize = 14.sp,
-                fontWeight = FontWeight.SemiBold,
-                lineHeight = 20.sp
-            )
+            Spacer(modifier = Modifier.weight(0.1f))
+            Button(
+                onClick = {},
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(52.dp),
+                shape = RoundedCornerShape(100.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFFE8C00),
+                    contentColor = Color.White
+                )
+            ) {
+                Text(
+                    text = "Continue",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    lineHeight = 20.sp
+                )
+            }
+            if (isKeyboardOpen) {
+                Spacer(modifier = Modifier.weight(0.18f))
+            }
         }
     }
 }

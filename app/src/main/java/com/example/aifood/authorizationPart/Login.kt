@@ -34,7 +34,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,7 +51,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.aifood.R
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.coroutineScope
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -63,7 +62,6 @@ fun LoginScreen(navController: NavHostController) {
     var showForgotPasswordSheet by remember { mutableStateOf(false) }
 
     val sheetState = rememberModalBottomSheetState()
-    val coroutineScope = rememberCoroutineScope()
 
     if (showForgotPasswordSheet) {
         ModalBottomSheet(
@@ -179,7 +177,6 @@ fun LoginScreen(navController: NavHostController) {
                     interactionSource = null
                 ) {
                     showForgotPasswordSheet = true
-                    coroutineScope.launch { sheetState.show() }
                 }
         )
         Spacer(modifier = Modifier.height(24.dp))
