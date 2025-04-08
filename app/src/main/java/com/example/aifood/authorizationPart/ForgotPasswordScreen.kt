@@ -59,6 +59,9 @@ fun KeyboardListener(viewModel: KeyboardViewModel = viewModel()) {
 
 @Composable
 fun ForgotPasswordScreen(navController: NavController, viewModel: KeyboardViewModel = viewModel()) {
+    Text(
+        text = "asd"
+    )
     var email by remember { mutableStateOf("") }
     KeyboardListener(viewModel)
 
