@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "563884750458",
+    "project_id": "aifood-15d74",
+    "storage_bucket": "aifood-15d74.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563884750458:android:dc498ad706e2b31dd36dc3",
+        "android_client_info": {
+          "package_name": "com.example.aifood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHjZ1YVUd4zpYWEQHT8T_760hFmdvxPxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

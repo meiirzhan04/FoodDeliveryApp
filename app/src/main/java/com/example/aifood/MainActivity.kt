@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
-import com.example.aifood.navigation.NavGraph
+import com.example.aifood.ui.theme.navigation.NavGraph
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +19,11 @@ class MainActivity : ComponentActivity() {
             onboardingPreferences = OnboardingPreferences(this)
             lifecycleScope.launch {
                 setContent {
-                    NavGraph("splashscreen", onboardingPreferences, navController)
+                    NavGraph(
+                        startDestination = "splashscreen",
+                        onboardingPreferences = onboardingPreferences,
+                        navController = navController
+                    )
                 }
             }
         }

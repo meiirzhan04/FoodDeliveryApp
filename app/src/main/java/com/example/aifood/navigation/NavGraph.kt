@@ -1,4 +1,4 @@
-package com.example.aifood.navigation
+package com.example.aifood.ui.theme.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
@@ -10,6 +10,10 @@ import com.example.aifood.authorizationPart.LoginScreen
 import com.example.aifood.authorizationPart.RegisterScreen
 import com.example.aifood.ui.theme.OnboardingScreen
 import com.example.aifood.ui.theme.SplashScreen
+import com.example.aifood.ui.theme.dastan.Basket
+import com.example.aifood.ui.theme.dastan.ForgotPasswordScreen
+import com.example.aifood.ui.theme.dastan.Home
+
 
 @Composable
 fun NavGraph(
@@ -26,14 +30,26 @@ fun NavGraph(
         composable("splashscreen") {
             SplashScreen(navController, onboardingPreferences)
         }
-        composable("loginscreen") {
-            LoginScreen(navController)
-        }
         composable("onboardingscreen") {
             OnboardingScreen(navController)
         }
+        composable("home") {
+            Home(navController)
+        }
+        composable("basket") {
+            Basket(navController)
+        }
+        composable("forgot") {
+            ForgotPasswordScreen(navController)
+        }
+        composable("forgotpasswrodscreen") {
+            ForgotPasswordScreen(navController)
+        }
         composable("registerscreen") {
             RegisterScreen(navController)
+        }
+        composable("loginscreen") {
+            LoginScreen(navController)
         }
     }
 }

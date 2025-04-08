@@ -58,10 +58,7 @@ fun OnboardingScreen(
     val context = LocalContext.current
     val preferences = remember { OnboardingPreferences(context) }
     val pagerState = rememberPagerState { onboardingList.size }
-
-
     val screenHeightDp = LocalConfiguration.current.screenHeightDp.dp
-
 
     Box(
         modifier = Modifier.fillMaxSize()

@@ -1,9 +1,8 @@
-import org.gradle.kotlin.dsl.implementation
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -43,12 +42,13 @@ android {
 
 dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.9")
-    implementation("androidx.datastore:datastore-preferences:1.1.4")
-    implementation("androidx.compose.material3:material3:1.3.1")
-    implementation("androidx.compose.foundation:foundation:1.7.8")
-    implementation("androidx.compose.foundation:foundation-layout:1.7.8")
-    implementation("androidx.compose.ui:ui:1.7.8")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.7.8")
+    implementation ("androidx.datastore:datastore-preferences:1.1.4")
+    implementation(platform("com.google.firebase:firebase-bom:33.12.0"))
+    implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.5")
+
 
 
     implementation(libs.androidx.core.ktx)
@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
