@@ -39,9 +39,6 @@ fun NavGraph(
         composable("basket") {
             Basket(navController)
         }
-        composable("forgot") {
-            ForgotPasswordScreen(navController)
-        }
         composable("forgotpasswordscreen") {
             ForgotPasswordScreen(navController)
         }

@@ -1,5 +1,6 @@
 package com.example.aifood.authorizationPart
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -40,6 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.W400
@@ -59,7 +61,8 @@ fun LoginScreen(navController: NavHostController) {
     var password by remember { mutableStateOf("") }
     var isPasswordVisible by remember { mutableStateOf(false) }
     var showForgotPasswordSheet by remember { mutableStateOf(false) }
-
+    var isValidEmail by remember { mutableStateOf(true) }
+    val context = LocalContext.current
     val sheetState = rememberModalBottomSheetState()
     if (showForgotPasswordSheet) {
         ModalBottomSheet(
@@ -150,7 +153,10 @@ fun LoginScreen(navController: NavHostController) {
             title = "Email Address",
             hint = "Enter Email",
             text = email,
-            onTextChange = { email = it }
+            onTextChange = {
+                email = it
+                isValidEmail = isValidEmail(it)
+            }
         )
         Spacer(modifier = Modifier.height(14.dp))
         TextFieldBoxPassword(
@@ -160,7 +166,9 @@ fun LoginScreen(navController: NavHostController) {
             image = if (!isPasswordVisible) R.drawable.ic_eye_open else R.drawable.ic_eye_close,
             onclick = { isPasswordVisible = !isPasswordVisible },
             visualTransformation = if (!isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            onTextChange = { password = it }
+            onTextChange = {
+                password = it
+            }
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
@@ -178,9 +186,21 @@ fun LoginScreen(navController: NavHostController) {
                 }
         )
         Spacer(modifier = Modifier.height(24.dp))
+        if (!isValidEmail) {
+            Text(text = "Invalid email format", color = Color.Red)
+        }
+        Spacer(modifier = Modifier.height(8.dp))
         Button(
             onClick = {
-                navController.navigate("home")
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                    return@Button
+                }
+                if (!isValidEmail) {
+                    Toast.makeText(context, "Invalid Email", Toast.LENGTH_SHORT).show()
+                } else {
+                    navController.navigate("home")
+                }
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -256,6 +276,13 @@ fun LoginScreen(navController: NavHostController) {
         }
     }
 }
+
+fun isValidEmail(email: String): Boolean {
+    val emailRegex =
+        "^[A-Za-z0-9+_.-]+@([A-Za-z0-9.-]+)\\.[a-zA-Z]{2,}$"
+    return email.matches(Regex(emailRegex))
+}
+
 @Composable
 fun CustomDragHandle() {
     Box(
@@ -347,7 +374,7 @@ fun TextFieldBoxEmail(
     title: String,
     hint: String,
     text: String,
-    onTextChange: (String) -> Unit = {}
+    onTextChange: (String) -> Unit = {},
 ) {
     Text(
         text = title,
